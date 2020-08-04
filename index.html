@@ -34,7 +34,7 @@
                 </form>
                 
                 <div class="list-group">
-                    <div class="list-group-item list-group-item-action flex-column align-items-start" v-for="(comment, index) in comments">
+                    <div class="list-group-item list-group-item-action flex-column align-items-start" v-for="(comment, index) in allComments">
                     <div class="d-flex w-100 justify-content-between">
                         <p class="mb-1">Autor: <strong>{{ comment.name }}</strong></p>
                     </div>
@@ -54,7 +54,7 @@
             },
             methods: {
                 addComment() {
-                    if (this.name.trim() === '' || this.message.trim() === '') {
+                    if (this.message.trim() === '') {
                         return;
                     }
                     this.comments.push({
@@ -68,7 +68,14 @@
                     this.comments.splice(index, 1);
                 }
             },
-
+            computed:{
+                allComments(){
+                    return this.comments.map(comment => ({
+                        ...comment,
+                        name: comment.name.trim() === '' ? 'Anônimo' : comment.name
+                    }))
+                }
+            }
         })
 
     </script>
