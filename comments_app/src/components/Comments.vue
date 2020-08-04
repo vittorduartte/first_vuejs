@@ -4,7 +4,7 @@
     <hr />
     
     <FormTodo v-on:add-todo="addComment"/>
-
+    <p v-if="comments.length <= 0"><small>Não temos comentários para listar.</small></p>
     <div class="list-group">
       <div
         class="list-group-item list-group-item-action flex-column align-items-start"
